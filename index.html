@@ -5,73 +5,557 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Grasshopper Lab - Advancing collective understanding of human agency in computing education through research, innovation, and evaluation of educational practices.">
     <title>Grasshopper Lab</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Modern CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            background-color: #f9fafb;
+            color: #111827;
+            min-height: 100vh;
+        }
+
+        /* Modern Dashboard Header */
+        .header {
+            background-color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #0066cc;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 5rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 3rem;
+            width: 3rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .header-badge {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background-color: rgba(0, 102, 204, 0.1);
+            color: #0066cc;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .header-badge {
+                display: flex;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .content-space {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Mission Hero Card */
+        .mission-hero {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8rem;
+            height: 8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(1.5rem, -1.5rem);
+            filter: blur(2rem);
+        }
+
+        .mission-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-indicator {
+            width: 0.5rem;
+            height: 2rem;
+            background-color: #66cc00;
+            border-radius: 9999px;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .mission-text {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .mission-highlight {
+            font-weight: 600;
+            color: #66cc00;
+        }
+
+        /* Topics Grid */
+        .topics-section .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .topics-section .section-indicator {
+            background-color: #00aa44;
+        }
+
+        .topics-section .section-title {
+            color: #111827;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .topics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .topics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .topic-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid #00aa44;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-0.25rem);
+        }
+
+        .topic-card:nth-child(2) {
+            border-left-color: #0066cc;
+        }
+
+        .topic-card:nth-child(3) {
+            border-left-color: #66cc00;
+        }
+
+        .topic-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .topic-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .topic-card:nth-child(1) .topic-icon {
+            background-color: rgba(0, 170, 68, 0.1);
+        }
+
+        .topic-card:nth-child(2) .topic-icon {
+            background-color: rgba(0, 102, 204, 0.1);
+        }
+
+        .topic-card:nth-child(3) .topic-icon {
+            background-color: rgba(102, 204, 0, 0.1);
+        }
+
+        .topic-card:hover .topic-icon {
+            transform: scale(1.1);
+        }
+
+        .topic-text h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-text p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-section .section-indicator {
+            background-color: #66cc00;
+        }
+
+        .projects-section .section-title {
+            color: #111827;
+        }
+
+        .projects-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .active-status {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        @media (min-width: 640px) {
+            .active-status {
+                display: flex;
+            }
+        }
+
+        .pulse-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: #00aa44;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.25rem;
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 102, 204, 0.2);
+        }
+
+        .project-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .project-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-dot {
+            transform: scale(1.5);
+        }
+
+        .project-card:nth-child(odd) .project-dot {
+            background-color: #00aa44;
+        }
+
+        .project-card:nth-child(even) .project-dot {
+            background-color: #0066cc;
+        }
+
+        .project-card:nth-child(3n) .project-dot {
+            background-color: #66cc00;
+        }
+
+        .project-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #111827;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer p {
+            color: #9ca3af;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-<header class="header">
-        <div class="container">
-            <img src="images/logo.png" alt="Grasshopper Lab Logo" class="logo">
-            <h1 class="site-title">Grasshopper Lab</h1>
+    <!-- Modern Dashboard Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-flex">
+                <div class="logo-section">
+                    <div>
+                        <img src="images/logo.png" alt="Grasshopper Lab Logo" class="logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Grasshopper Lab</h1>
+                        <p>Computing Education Research</p>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <span>🔬 Research Lab</span>
+                </div>
+            </div>
         </div>
     </header>
 
+    <!-- Modern Dashboard Layout -->
     <main class="main-content">
-        <div class="container">
-            <section class="section">
-                <h2 class="section-title">Mission</h2>
-                <p class="mission-text">
-                    Grasshopper Lab aims to <span class="mission-highlight">advance collective understanding of human agency and accelerate its development among key stakeholders in computing education</span>.
-                    As we move toward an Age of Abundance driven by AI automation, limitless information, and a transformed digital economy,
-                    empowering individuals with agency is critical. In a world where machines and intelligent agents handle much of the routine 
-                    cognitive and physical labor, fostering human creativity, consciousness, and purpose becomes essential to ensuring a thriving, empathetic, and resilient human civilization.
-                </p>
-            </section>
+        <div class="content-space">
+            <!-- Mission Section - Hero Card -->
+            <div class="mission-hero">
+                <div class="mission-content">
+                    <div class="section-header">
+                        <div class="section-indicator"></div>
+                        <h2 class="section-title">Mission</h2>
+                    </div>
+                    <p class="mission-text">
+                        Grasshopper Lab aims to <span class="mission-highlight">advance collective understanding of human agency and accelerate its development among key stakeholders in computing education</span>.
+                        As we move toward an Age of Abundance driven by AI automation, limitless information, and a transformed digital economy,
+                        empowering individuals with agency is critical. In a world where machines and intelligent agents handle much of the routine 
+                        cognitive and physical labor, fostering human creativity, consciousness, and purpose becomes essential to ensuring a thriving, empathetic, and resilient human civilization.
+                    </p>
+                </div>
+            </div>
 
-            <section class="section">
-                <h2 class="section-title">Topics of Interest</h2>
-                <ul class="topics-list">
-                    <li class="topic-item">
-                        <div class="topic-title">Advance Understanding of Human Agency</div>
-                        <p class="topic-description">Conduct research and develop frameworks to explore how individuals exercise agency in computing education.</p>
-                    </li>
-                    <li class="topic-item">
-                        <div class="topic-title">Develop Innovations that Foster Development of Human Agency</div>
-                        <p class="topic-description">Create and assess interactive tools, curricula, and pedagogical approaches that enhance agency-driven learning.</p>
-                    </li>
-                    <li class="topic-item">
-                        <div class="topic-title">Evaluate Practices that Support Formation of Agency</div>
-                        <p class="topic-description">Use empirical research and data analysis to inform best practices for supporting human agency in computing education.</p>
-                    </li>
-                </ul>
-            </section>
+            <!-- Topics of Interest Section - Modern Card Grid -->
+            <div class="topics-section">
+                <div class="section-header">
+                    <div class="section-indicator"></div>
+                    <h2 class="section-title">Topics of Interest</h2>
+                </div>
+                <div class="topics-grid">
+                    <div class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-icon">
+                                <span>🧠</span>
+                            </div>
+                            <div class="topic-text">
+                                <h3>Advance Understanding of Human Agency</h3>
+                                <p>Conduct research and develop frameworks to explore how individuals exercise agency in computing education.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-icon">
+                                <span>🚀</span>
+                            </div>
+                            <div class="topic-text">
+                                <h3>Develop Innovations that Foster Development of Human Agency</h3>
+                                <p>Create and assess interactive tools, curricula, and pedagogical approaches that enhance agency-driven learning.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-icon">
+                                <span>📊</span>
+                            </div>
+                            <div class="topic-text">
+                                <h3>Evaluate Practices that Support Formation of Agency</h3>
+                                <p>Use empirical research and data analysis to inform best practices for supporting human agency in computing education.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <section class="section">
-                <h2 class="section-title">Current Projects</h2>
-                <ul class="projects-list">
-                    <li class="project-item">
-                        <div class="project-title">Understanding Student Interaction with GenAI in Computing courses</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Training Tutors, Teaching Assistants, Instructors via Interactive Agents</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Predicting Student Participation in Industry Internships</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Preparing Students for Behavioral Interviews</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Preparing Students for Technical Interviews</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Fostering Student Participation in Experiential Learning</div>
-                    </li>
-                    <li class="project-item">
-                        <div class="project-title">Instructor Productivity Tools for Canvas</div>
-                    </li>
-                </ul>
-            </section>
+            <!-- Current Projects Section - Modern Project Grid -->
+            <div class="projects-section">
+                <div class="projects-header">
+                    <div class="section-header">
+                        <div class="section-indicator"></div>
+                        <h2 class="section-title">Current Projects</h2>
+                    </div>
+                    <div class="active-status">
+                        <span class="pulse-dot"></span>
+                        <span>Active Research</span>
+                    </div>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Understanding Student Interaction with GenAI in Computing courses</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Training Tutors, Teaching Assistants, Instructors via Interactive Agents</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Predicting Student Participation in Industry Internships</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Preparing Students for Behavioral Interviews</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Preparing Students for Technical Interviews</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Fostering Student Participation in Experiential Learning</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-dot"></div>
+                            <h3 class="project-title">Instructor Productivity Tools for Canvas</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Modern Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2024 Grasshopper Lab. Advancing human agency in computing education.</p>
+        </div>
+    </footer>
 </body>
 </html>
